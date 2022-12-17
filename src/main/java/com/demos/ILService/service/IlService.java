@@ -28,9 +28,9 @@ public class IlService {
     public Il createIl(Il il) {
 
         Il il1=ilRepository.findById(il.getId()).orElse(null);
-        if(il1 == null)
+        if(il1 != null)
             throw new IlAlreadyExistException("Il already found");
-        return ilRepository.save(il1);
+        return ilRepository.save(il);
     }
 
     public Il updateIl(Il il, int id) {
@@ -39,7 +39,7 @@ public class IlService {
             return null;
         foundIl.setName(il.getName());
         foundIl.setCreateDate(il.getCreateDate());
-        return ilRepository.save(il);
+        return ilRepository.save(foundIl);
     }
 
     public void deleteIl(int id) {
